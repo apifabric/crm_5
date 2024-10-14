@@ -1,0 +1,90 @@
+// Copy this text, paste to https://dbdiagram.io/d
+// Or, https://databasediagram.com/app
+
+Table Category {
+    id INTEGER [primary key]
+    name VARCHAR 
+    }
+
+Table Country {
+    id INTEGER [primary key]
+    name VARCHAR 
+    }
+
+Table Customer {
+    id INTEGER [primary key]
+    name VARCHAR 
+    email VARCHAR 
+    join_date DATETIME 
+    }
+
+Table Department {
+    id INTEGER [primary key]
+    name VARCHAR 
+    location VARCHAR 
+    }
+
+Table Employee {
+    id INTEGER [primary key]
+    name VARCHAR 
+    hire_date DATETIME 
+    }
+
+Table EmployeeDepartment {
+    id INTEGER [primary key]
+    employee_id INTEGER 
+    department_id INTEGER 
+    }
+
+Table Order {
+    id INTEGER [primary key]
+    customer_id INTEGER 
+    order_date DATETIME 
+    total_amount FLOAT 
+    }
+
+Table OrderDetail {
+    id INTEGER [primary key]
+    order_id INTEGER 
+    product_id INTEGER 
+    quantity INTEGER 
+    unit_price FLOAT 
+    }
+
+Table Product {
+    id INTEGER [primary key]
+    name VARCHAR 
+    price FLOAT 
+    quantity_in_stock INTEGER 
+    }
+
+Table ProductCategory {
+    id INTEGER [primary key]
+    product_id INTEGER 
+    category_id INTEGER 
+    }
+
+Table ProductSupplier {
+    id INTEGER [primary key]
+    product_id INTEGER 
+    supplier_id INTEGER 
+    }
+
+Table Supplier {
+    id INTEGER [primary key]
+    name VARCHAR 
+    contact_email VARCHAR 
+    }
+
+
+
+// Relationships
+    Ref: EmployeeDepartment.(department_id) < Department.(id)
+    Ref: EmployeeDepartment.(employee_id) < Employee.(id)
+    Ref: Order.(customer_id) < Customer.(id)
+    Ref: OrderDetail.(order_id) < Order.(id)
+    Ref: OrderDetail.(product_id) < Product.(id)
+    Ref: ProductCategory.(category_id) < Category.(id)
+    Ref: ProductCategory.(product_id) < Product.(id)
+    Ref: ProductSupplier.(product_id) < Product.(id)
+    Ref: ProductSupplier.(supplier_id) < Supplier.(id)
